@@ -153,16 +153,18 @@ fi
 download_install() {
 if [ "$1" ]; then
 echo -en "Reading DataBase... 0%"
-sleep 1
-app=$(cat /pil/urls.db | grep "$1" | cut -d ":" -f2)
-echo -en "\rReading DataBase... 100%"
+sleep 0.2
+export app=$(cat /pil/urls.db | grep "$1" | cut -d ":" -f2)
+echo -en "\rReading DataBase... 100%\n"
+weew=$PWD
 if [ "$app" ]; then
+mkdir /tmp/packer
 echo "Downloading..."
-download=$RANDOM
-downloader=$(wget "$app" -O /tmp/$download) # Used WGET.
-pil install /tmp/$download
+cd /tmp/packer
+downloader=$(wget $app) # Used WGET. #Fixed (This dint donwload)
+pil install /tmp/packer/$(ls /tmp/packer)
 else
-echo "Pack <<$app>> not found in DataBase"
+echo "Pack <<$1>> not found in DataBase"
 fi
 fi
 }
