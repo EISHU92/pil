@@ -29,7 +29,7 @@ echo "Removed pil"
 
 case $1 in 
 	install)
-	if [ -f $PWD/install ]; then
+	if [ -f $PWD/install__ ]; then
 	if [ -f $PWD/data.tar ]; then
 	install_
 	else
@@ -41,12 +41,7 @@ case $1 in
 	;;
 	remove)
 	if [ -f $PWD/remove.list ]; then
-	if [ -f $PWD/remove ]; then
 	remove
-	else
-	echo "No remove shell script found"
-	exit 1
-	fi
 	else
 	echo "No remove list found."
 	exit 1
