@@ -1,0 +1,7 @@
+#!/bin/bash
+# Pil Desktop Enverivoment (Included by the installation)
+#
+
+appname=pp
+prstarter=normal
+prexe=PilDesktop.sh

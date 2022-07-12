@@ -1,0 +1,359 @@
+#!/bin/bash
+
+#
+# Program PIL for 0.3
+#
+
+#
+# By Donatto
+#
+
+
+usage() {
+cat << __EOF__
+--help) Show the help menu.
+--test <pack>) Test application (ON/OFF).
+--build -FILE- -DIRECTORY-) Build a application, with -q can be quiet the terminal.
+--ins-down <pack>) Install apps on the repository
+--edit-source) Edit the URLs of the apps
+--cat) View the URLs od the apps
+--search <app>) Search APP on the repository
+--unpack-i <pack directory> <dir to extraxt>) Unpack only app info 
+--unpack <pack directory> <dir to extract>) Unpack all of the package
+--info <pack>) View pack info
+
+By Chronoz
+Software "open-source", you can modify for you.
+Do not distribute!
+
+__EOF__
+}
+
+test_app() {
+if [ "$1" ]; then
+if [ -d "/pil/apps/$1" ]; then
+echo "App are installed."
+cat "/pil/apps/$1/pil.acfg"
+else
+echo "Package $1 not installed"
+fi
+else
+echo "You dint enter a application name."
+fi
+}
+
+test_app_nh() {
+if [ "$1" ]; then
+if [ -d "/pil/apps/$1" ]; then
+echo "0"
+else
+true
+fi
+else
+true
+fi
+}
+
+test_app_info() {
+if [ "$1" ]; then
+echo "Checking pil.acfg file..."
+
+name=$(cat $1/pil.acfg | grep appnam)
+executable=$(cat $1/pil.acfg | grep prexe)
+starter=$(cat $1/pil.acfg | grep prstarter)
+desc=$(cat $1/pil.acfg | grep desc) # Added. For view desctription of the application.
+
+if [ "$name" ]; then
+echo "name found."
+	if [ "$executable" ]; then
+	echo "executable found"
+		if [ "$starter" ]; then
+		echo "PiLib starter found."
+			if [ "$desc" ]; then
+			echo "Description of the app found"
+			else
+			echo "Desc not found. Skipping"
+			fi
+		else
+		echo "PiLib starter not found"
+		exit 1
+		fi
+	else
+	echo "executable not found"
+	exit 1
+	fi
+else
+echo "name not found"
+exit 1
+fi
+
+fi
+}
+
+check_root() {
+if [ -d "$1" ]; then
+if [ -f "$1/data.meta" ]; then
+echo "Found Multi-Arch app"
+else
+echo "Found One-Arch app"
+fi
+else
+echo "ROOT of app not found"
+fi
+}
+
+compile() {
+CDDD=$PWD
+cd "$2"
+/usr/bin/tar -cf "$1" "$(ls)"
+cd $CDDD
+}
+
+build_app() {
+echo
+if [ "$1" ]; then
+filename="$1"
+if [ -d "$2" ]; then
+if [ -f "$2/pil.acfg" ]; then
+test_app_info "$2" || echo "Error."
+else
+echo "File pil.acfg does not exits"
+echo "Make the pil.acfg for make the pack $1"
+echo "Example:"
+cat << EOF
+appnam="Name of the app without spaces"
+desc="Description of the pack"
+prexe="Name of the executable for start"
+prstarter="PiLib to use to start the executable"
+EOF
+exit 1
+fi
+check_root "$2/root"
+echo
+echo
+echo -en "[    ]Checking if some errors are found..."
+sleep 1
+if [ $? = "0" ]; then
+echo -en "\r[ \033[0;32mOK\033[0m ]Checking if some errors are found..."
+echo "Building pack <<$1>>"
+compile "$1" "$2"
+echo
+echo "Building complete. File saved at $1"
+else
+echo -en "\r[\033[0;31mFAIL\033[0m]Checking if some errors are found..."
+fi
+else
+echo "Directory name not enter or invalid."
+fi
+else
+echo "File name dint enter."
+fi
+}
+
+download_install() {
+if [ "$1" ]; then
+echo -en "Reading DataBase... 0%"
+sleep 1
+app=$(cat /pil/urls.db | grep "$1" | cut -d ":" -f2)
+echo -en "\rReading DataBase... 100%"
+if [ "$app" ]; then
+echo "Downloading..."
+download=$RANDOM
+downloader=$(wget "$app" -O /tmp/$download) # Used WGET.
+pil install /tmp/$download
+else
+echo "Pack <<$app>> not found in DataBase"
+fi
+fi
+}
+
+edit_source() {
+echo "Editing URLs of the packs..."
+echo
+echo -en "[      ]Testing if nano app are installed"
+if [ -f "/bin/nano" ]; then
+echo -en "\r[  Ok  ]Testing if nano app are installed"
+nano /pil/urls.db
+else
+echo -en "\r[Failed]Testing if nano app are installed"
+echo
+echo "If you want to modify the URLs, Type: # <<Your default editor of text>> <Arguments if is required> /pil/urls.db"
+echo "On ROOT env"
+fi
+}
+
+cat_sources() {
+cat /pil/urls.db
+}
+
+search_app() {
+app=$(cat /pil/urls.db | grep "$1" | cut -d ":" -f2)
+if [ "$app" ]; then
+echo "[$1] is ok"
+echo "Url: $app"
+else
+echo "Pack <$1> not found"
+fi
+}
+
+unpack_info() {
+if [ -f "$1" ]; then
+if [ -d "$2" ]; then
+mkdir /tmp/app
+/usr/bin/tar -xf $1 -C /tmp/app
+cp -r /tmp/app/pil.acfg $2
+if [ -f "/tmp/app/depends.pilexe" ]; then
+ cp -r /tmp/app/depends.pilexe
+fi
+rm -r /tmp/app
+else
+echo "Dir to extract not enter or invalid directory"
+fi
+else
+echo "Package not enter or invalid"
+fi
+}
+
+unpack_all() {
+if [ -f "$1" ]; then
+if [ -d "$2" ]; then
+mkdir /tmp/app
+/usr/bin/tar -xf $1 -C /tmp/app
+CDD=$PWD
+cd /tmp/app
+cp -r * $2
+cd $CDD
+rm -r /tmp/app
+else
+echo "No folder directory or invalid directory"
+fi
+else
+echo "No file enter or invalid file."
+fi
+
+}
+
+unpack_info2() {
+if [ -f "$1" ]; then
+if [ -d "$2" ]; then
+mkdir /tmp/app
+/usr/bin/tar -xf $1 -C /tmp/app
+cat /tmp/app/pil.acfg 
+rm -r /tmp/app
+else
+echo "Dir to extract not enter or invalid directory"
+fi
+else
+echo "Package not enter or invalid"
+fi
+}
+
+case $1 in
+	--help)
+	usage
+	;;
+	--test)
+	if [ "$2" = "--nohuman" ]; then
+	if [ "$2" ]; then
+	test_app_nh $3
+	else
+	echo "Name not enter."
+	fi
+	else
+	if [ "$2" ]; then
+	test_app $2
+	else
+	echo "Name not enter."
+	fi
+	fi
+	;;
+	--build)
+	if [ "$2" ]; then
+	if [ -d "$3" ]; then
+	build_app "$2" "$3"
+	else
+	echo "Folder directory not enter or invalid folder directory"
+	fi
+	else
+	echo "No name enter for build a package, Its: $ ppil <<new pack name>> <<folder with data>>"
+	fi
+	;;
+	--ins-down)
+	if [ "$2" ]; then
+	download_install
+	else
+	echo "No pack name enter."
+	fi
+	;;
+	--edit-source)
+	edit_source
+	;;
+	--cat)
+	cat_sources
+	;;
+	--search)
+	if [ "$2" ]; then
+	search_app "$2"
+	else
+	echo "No pack name enter."
+	fi
+	;;
+	unpack-i)
+	if [ -f "$2" ]; then
+	if [ -d "$3" ]; then
+	unpack_info "$2" "/tmp"
+	else
+	echo "Directory to extract not exits" 
+	fi
+	else
+	echo "Package not found"
+	fi
+	;;
+	--unpack)
+	if [ -f "$2" ]; then
+	if [ -d "$3" ]; then
+	unpack_all "$2" "$3"
+	else
+	echo "Directory to extract not exits" 
+	fi
+	else
+	echo "Package not found"
+	fi
+	;;
+	--info)
+	if [ -f "$2" ]; then
+	if [ -d "$3" ]; then
+	unpack_info2 "$2" "$3"
+	else
+	echo "Directory to extract not exits" 
+	fi
+	else
+	echo "Package not found"
+	fi
+	;;
+esac
+
+# This tool will be not modified, only modify on security updates.
+
+#  ____________     ____
+# |            |   |    |
+# |   _________|   |    |
+# |  |		   |	|
+# |  |		   |	|
+# |  |		   |	|__________    __  ____   ____________    _  ________    ___________    _________
+# |  |		   |	           |  |  \/      |   ______   |  | \/_____   |  |   _____   |  |______   |
+# |  |		   |	 _____     |  |    ____| |  |	   |  |  |  |	  |  |  |  |	 |  |        /  /
+# |  |		   |	|     |    |  |   |	 |  |	   |  |  |  |	  |  |  |  |	 |  |      /  /
+# |  |_________    |	|     |    |  |   |	 |  |	   |  |  |  |	  |  |  |  |	 |  |    /  /
+# |            |   |	|     |    |  |   |	 |  |______|  |  |  |	  |  |  |  |_____|  |  /  /______
+# |____________|   |____|     |____|  |___|      |____________|  |__|	  |__|  |___________| |__________|
+
+
+
+
+
+
+
+
+
+

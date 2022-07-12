@@ -1,0 +1,122 @@
+#! /bin/bash
+echo
+echo "Pil 0.6.1"
+echo "Mode: Installing."
+echo 
+user_profile_required() {
+echo "User name or nick are required for the setup or press enter for skip"
+echo "Enter your nick without spaces"
+echo -n "> "
+read NAME
+if [ "$NAME" ]; then
+echo "Finished, Name as $NAME"
+echo "username=$NAME" >> /pil/pil.conf
+mkdir -p /pil/root/home/$NAME
+else
+RANDOML=$RANDOM
+echo "No name are enter, name generated: $RANDOML"
+echo "username=$RANDOML" >> /pil/pil.conf
+mkdir -p /pil/root/home/$RANDOML
+fi 
+}
+
+system() {
+echo "My Friend...."
+sleep 1
+echo "Can you please put your system name for best use"
+echo "Eg: Minetest only can run on ubuntu and debian, now by this idea, you can use it on Artix, Arch, Arco, etc..."
+echo "The list is on there:"
+echo "Arch, Artix, Arco and derivates (a)"
+echo "Debian, Ubuntu and derivates (b)"
+echo "Slackware, PuppyLinux and derivates (c)"
+echo "Other.... (d)"
+echo "Ubuntu Mate only (Library conflicts) (e)"
+
+read -N1 -s system
+case $system in
+  a)
+  SYSTEMNAME="arch"
+  ;;
+  b)
+  SYSTEMNAME="debianpacks"
+  ;;
+  c)
+  SYSTEMNAME="slackware"
+  ;;
+  d)
+  "Remember to:"
+  sleep 1
+  echo "Put your system name on /pil/pil.cfg line: system=(Void.EasyOs.Etc)"
+  ;;
+  e)
+  SYSTEMNAME="ubuntumate"
+  ;;
+esac
+}
+
+
+translation() {
+
+sleep 1
+echo
+echo
+echo "Enter 1 for use Spanish and 2 for for use English"
+read translate
+if [ "$translate" ]; then
+case "$translate" in
+    1)
+    echo "1" >> /pil/translate.s
+    ;;
+    2)
+    echo "2" >> /pil/translate.s
+    ;;
+    *)
+    echo "None are enter... Using english first"
+    echo "2" >> /pil/translate.s
+    ;;
+esac 
+fi
+}
+
+
+
+echo "Checking Pil Home"
+if [ -d "/pil" ]; then echo "found pil home"; else echo "Aborted, Pil home not found"; exit 1; fi
+echo "Step 1"
+user_profile_required
+echo "Step 2"
+translation
+echo "Step 3"
+system
+echo -------------------------------------------
+echo "If you want install a package, you need root"
+echo "Building Config... This make a while"
+sleep 1
+echo "pilhome=/pil" >> /pil/pil.conf; echo Pil Home 5
+
+echo "pilbin=/pil/bin" >> /pil/pil.conf; echo Pil Binary directory 5
+
+echo "pilplugs=/pil/plugs" >> /pil/pil.conf; echo Pil library 4
+
+echo "pilroot=/pil/root" >> /pil/pil.conf; echo Pil Root 3
+
+echo "system=$SYSTEMNAME" >> /pil/pil.conf; echo "System Name 2"
+
+
+
+echo "pilroot=/pil/translate" >> /pil/pil.conf; echo Pil Translations 1
+echo "checking if gcc are installed for compile some libs"
+if [ -f /usr/bin/gcc ]; then
+. /lib/pil_hard_libs/src/compile.shell
+else
+echo "We need Gcc for compile the hard libs"
+echo "Install gcc and the setup will continue"
+echo "If gcc are installed, type . /lib/pil_hard_libs/src/compile.shell, on Root."
+fi
+####
+echo "Building complete"
+
+
+
+
+

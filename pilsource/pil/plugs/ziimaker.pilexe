@@ -1,0 +1,29 @@
+#!/bin/bash
+
+#
+# Zii Maker Loader 0.2
+#
+
+#
+# Plugs data: /pil/plug.sys/zii
+#
+
+if [ -f "$2" ]; then
+int=$(/usr/bin/file $2 | /usr/bin/grep tar)
+if [ "$int" ]; then
+cd /tmp
+/bin/mkdir -p /tmp/zmk.runne
+/usr/bin/tar -C /tmp/zmk.runne -x -f $2
+if [ -f "/tmp/zmk.runne/include.txt" ]; then
+lastpath=$PATH
+PATH=/pil/plug.sys/zii
+./tmp/zmk.runne/init
+PATH=$lastpath
+else
+exe=/tmp/zmk.runne/init
+fi
+fi
+fi
+. $exe
+rm -r /tmp/zmk.runne
+PATH=$lastpath

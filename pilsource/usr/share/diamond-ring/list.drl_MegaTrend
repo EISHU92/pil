@@ -1,0 +1,24 @@
+#!/bin/bash
+# MegaTrends file loader/executer
+megatrendload() {
+echo "MegaTrend loading..."
+if [ "$1" ]; then
+if [ "$(file $1 | grep "ASCII text executable")" ]; then
+echo "Loading $2 from $PILIB in MegaTrends 0.1"
+$2
+else
+echo "This file is not Bourne-Again (ASCII text executable)"
+err="1"
+fi
+if [ "$(file $1 | grep "ELF")" ]; then
+echo "Loading $2 from $PILIB in MegaTrends 0.1"
+.$1
+else
+if [ $err ]; then
+echo "This is file is not executable"
+else
+echo "This is not ELF executable. Skipping..."
+fi
+fi
+fi
+}

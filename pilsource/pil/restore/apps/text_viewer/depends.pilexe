@@ -1,0 +1,2 @@
+#Put your commands to install depends
+pil.send_to_desktop "Text viewer executed."

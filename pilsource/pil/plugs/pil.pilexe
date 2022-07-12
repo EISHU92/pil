@@ -1,0 +1,147 @@
+#!/bin/bash
+
+#
+# Pil programming 2021
+#
+
+#Shell + pil programming = ¬
+
+#
+# Only default bash commands, not grep, expr, etc, functions are enables this commands
+#
+
+pathpast=$PATH
+
+PATH=:
+
+pil.calc() { #Calculate
+if [ "$1" ]; then
+/usr/bin/expr $1
+else
+echo "Empty entry."
+fi
+}
+
+pil.open() {
+if [ $1 ]; then
+if [ -f $1 ]; then
+iopenfile=$1
+iopenfileinf=$(/usr/bin/file $1)
+else
+echo "I/O Read error 1"
+fi 
+else
+echo "Empty entry."
+fi
+}
+
+pil.fileinf() {
+if [ -f "$iopenfileinf" ]; then
+echo $iopenfileinf
+else
+if [ $1 ]; then
+echo "Sorry, did you mean pil.open $1?"
+else 
+echo "No pil.open function are started"
+fi
+fi
+}
+
+pil.grep() {
+if [ -f "$iopenfile" ]; then
+/usr/bin/cat $iopenfile | /usr/bin/grep "$1"
+else
+echo "Use pil.open <<File>> to grep lines"
+fi
+}
+
+pil.remove() {
+if [ -f "$iopenfile" ]; then
+echo "¿Sure to remove $iopenfile?"
+echo "y is yes and n is no"
+echo -n "> "
+read iopenresult
+case $iopenresult in
+    y)
+    /usr/bin/rm -r $iopenfile
+    ;;
+    n)
+    echo "Cancelled"
+    ;;
+esac
+else
+if [ $1 ]; then
+echo "Sorry, use pil.open $1 to execute this function" 
+else
+echo "No file are enter, use function pil.open <<File>>"
+fi
+fi
+}
+
+pil.make_var() {
+if [ $1 ]; then
+varnam=$1
+else
+echo "Name for the variable required!"
+echo "Variable name generated: etwo"
+varnam=etwo
+fi
+if [ $2 ]; then
+vardata=$2
+else
+echo "Data for variable is need!"
+echo "You need to enter here the data"
+echo -n "pil.make_var $varnam (Data is required)> "
+read varenterdta
+if [ $varenterdta ]; then
+$vardata=$varenterdta
+else
+echo "Data enter: E2:D4:K6:10:1S:E1."
+$vardata="E2:D4:K6:10:1S:E1"
+fi
+fi
+$varnam=$vardata
+}
+
+pil.edit() {
+if [ -f "$iopenfile" ]; then
+if [ "$PILEDITOR" ]; then
+true
+else
+echo 'You need pil.make_var PILEDITOR "enter here for write the file"'
+fi
+else
+echo "you need pil.open <<File>> to write the file"
+fi
+}
+
+pil.show_raw_data() {
+if [ -f "$iopenfile" ]; then
+/usr/bin/cat $iopenfile
+else
+echo "you need pil.open <<File>> to view the file"
+fi
+}
+
+
+
+
+
+
+
+case $1 in
+    --start)
+    . $2
+    PATH=$pathpast
+    ;;
+    *)
+    echo "Empty."
+    PATH=$pathpast
+    ;;
+esac
+PATH=$pathpast
+
+
+echo --$RANDOM--
+echo
+

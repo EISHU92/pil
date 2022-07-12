@@ -1,0 +1,8 @@
+#!/bin/bash
+#Removed. That not finished yet
+#Desktop random messages
+#if in the config the line of desktopr are 1, is enabled random messages else random messages cannot be displayed
+#if [ "1" == $(cat /pil/pil.conf | grep desktopr= | cut -d = -f2) ]; then
+# Not finished. Are in beta
+#notify-send "Hiii :)" "How are you?"
+#fi

@@ -1,0 +1,12 @@
+Pil two directory of default data.
+
+This directory as used for the variable $HOME and some plugins... on tmp dir
+All data of the installed app data are here.
+
+Games, Apps, Etc data are here, you can explore with File Manager from Zii to Multi-Arch_Pil
+
+Libs can be installed here, manually, by packs of libs, Example: /pil/root/libs/libc6.so with the app Pil_Libs_Installer
+
+Vars used here:
+HOME=/pil/root
+

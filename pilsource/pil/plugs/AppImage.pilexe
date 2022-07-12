@@ -1,0 +1,28 @@
+#!/bin/bash
+
+#
+# AppImage Loader By Donatto
+#
+
+if [ "$1" ]; then
+    if [ "$2" ]; then
+    echo "Opts for the loader are found"
+    opts="$2"
+    fi
+if [ -f "$1" ]; then
+chmod 777 $1
+if [ "$(file $1 | grep ELF)" ]; then 
+.$1 $opts || echo "File $1 as some internal errors..."
+else 
+echo "Incorrect file binary"
+fi
+else
+echo "Incorrect file direction"
+fi
+fi
+
+#
+# Gaming support are enabled.
+#
+
+

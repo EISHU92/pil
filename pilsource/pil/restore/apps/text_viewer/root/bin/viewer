@@ -1,0 +1,14 @@
+#!/bin/bash
+echo "Enter the file directory"
+echo -n "pil.open >>  "
+read filedir
+if [ $filedir ]; then
+pil.open "$filedir"
+else
+echo "No file enter"
+echo "The file /pil/pil.conf have been opened."
+pil.open /pil/pil.conf
+fi
+
+pil.show_raw_data
+

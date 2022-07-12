@@ -1,0 +1,40 @@
+#!/bin/bash
+#
+# KaRoot BETA
+#
+echo "EISHU"
+sleep 1
+echo "KaRoot V1.0"
+# Principal function, to mount and start that application
+start () {
+xhost +local:
+cp /etc/hosts $FSPATH/etc/
+if [ -f "/etc/resolv.conf" ]; then
+cp /etc/resolv.conf $FSPATH/etc/resolv.conf
+else
+if [ -f "/run/systemd/resolve/stub-resolv.conf" ]; then
+cp /run/systemd/resolve/stub-resolv.conf $FSPATH/etc/resolv.conf
+fi
+fi
+mount --bind /dev $FSPATH/dev
+#mount --bind /var/run/dbus $FSPATH/var/lib/dbus
+#mount --bind /var/run/dbus $FSPATH/var/run/dbus
+if [ -d "/run" ]; then # System sound to sub-system. 
+mount --bind /run $FSPATH/var/run
+else
+mount --bind /var/run $FSPATH/var/run
+fi
+cat > $FSPATH/tmp/startup << EOF
+#!/bin/bash
+echo "KaRoot SandBoxer By:"
+echo "      -EISHU-"
+echo
+/sysinit.bin ## That is on file, if that are writed here, the vars writed on it will make conflicts so i made this
+EOF
+chmod 777 $FSPATH/tmp/startup
+chroot $FSPATH /tmp/startup
+
+xhost -local:
+}
+export FSPATH=$ROOT
+start

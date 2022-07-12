@@ -1,0 +1,77 @@
+#!/bin/bash
+#Translaciones a Var-Keys
+#
+# Escrito por GhandTrail de EISHU
+# Controlado por EISHU
+#
+qq="install, Instalar una aplicacion"
+ww="load, Arrancar una aplicacion instalada en el sistema de Pil"
+ee="remove, Borrar una aplicacion"
+rr="restore, Restaurar el sistema de Pil"
+tt="list, Listar programas"
+yy="Escriba el directorio de la aplicacion para instalar"
+uu="Instalando..."
+ii="Fallo ejecutar <install> de la aplicacion, ¿Ejecutable invalido?"
+oo="Instalacion completa!"
+pp="Direccion del archivo incorrecto"
+aa="El directorio es incorrecto."
+ss="Vacio."
+dd="¿Esta seguro de restablecer el sistema de Pil?"
+ff="Escribe y para aceptar y n para cancelar."
+gg="Escribe tu nombre o nombre falso"
+hh="Nick: "
+jj="No nombre insertado, nombre generado: Pil_user"
+kk="Sistema de Pil restaurado."
+ll="Cancelado"
+zz="Escriba el nombre del programa"
+f3="Probando si el archivo $vare es un archivador tar..."
+xx="Programa encontrado."
+cc="A ocurrido un problema al iniciar el programa inicial, La libreria de PiLib es invalida. Error 1"
+vv="Tipo de ejecutable incorreto. ¿App invalido?"
+bb="No se a ingresado el nombre del programa, use comando list para ver programas instalados."
+nn="Lista de aplicaciones:"
+mm="No hay ningun programa instalado... La lista esta vacia."
+qw="Escriba el nombre de la aplicacion"
+
+
+
+
+
+
+f6="
+Ummmmm Señor...
+Estamos teniendo problemas iniciando Pil,
+no se ha encontrado las funciones principales.
+Aqui estan los errores:
+El valor de la variable hardlibs es: $hardlibs
+Warning: \033[1;99;33mNo se encontro el directorio de Hardlibs Ignoring\033[0m
+Time: $(date)
+"
+f1="Informacioń: Tu puedes pedir ayuda con solo insertar el comando $ pil help P06"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+qe="Programa encontrado."
+qr="Esta seguro de remover la aplicacioń??"
+qt="Escriba Yes o y para aceptar y No o n para cancelar"
+qy="Removiendo..."
+qu="La aplicacion fue removida"
+qi="Removiendo..."
+qo="La aplicacion fue removida"
+f4="exit: Salir de Pil"
+translateonstop="Saliendo de PIL"
+
+hi="Hola"
+loadcfg="Cargando la configuracion..."

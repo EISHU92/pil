@@ -1,0 +1,19 @@
+#!/bin/bash
+# Here you can put commands for "StartUp".
+
+#
+# Commands with "#" is disabled, Eg: pil start pp, if you got installed PilDesktop, the command comes enabled
+#
+
+#
+# Warning! When you put commands here, it can dissapear when you save this file, from installing a program
+#
+
+echo "Pil Desktop: "
+if [ -f /pil/apps/pp* ]; then
+echo "Pil Desktop: Enabled-Installed"
+echo "Starting PilDesktop..."
+else
+echo "Pil Desktop: Disabled-NotInstalled"
+fi
+

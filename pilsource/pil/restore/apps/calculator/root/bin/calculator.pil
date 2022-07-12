@@ -1,0 +1,16 @@
+#!/usr/bin/bash
+
+echo "Calculator as on"
+echo "Put here for result"
+while true
+do
+echo -n "Calc>> "
+read calcapp
+if [ "$calcapp" ]; then
+pil.calc "$calcapp"
+fi
+if [ $calcapp = "exit" ]; then
+break=break
+fi
+$break
+done

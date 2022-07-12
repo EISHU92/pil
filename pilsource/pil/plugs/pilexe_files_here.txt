@@ -1,0 +1,13 @@
+You can place here you own Pil lib for start programs
+if one Pil lib is name pil_shell without .pilexe, the plug dont be executed
+ Lib: (Pil lib name).pilexe
+Installed pil libs:
+--> Wine lib, for execute windows apps
+--> Shell lib, for execute text-scripts based in bash
+--> Pil Apps loader (Default *.pal loader) Pil.App.Loader
+--> ZiiMaker loader, execute ziimaker programs
+--> AppImage Loader, execute AppImages files
+
+Pil opens PiLibs with arguments
+On open a app: your_plug.pilexe --start XX.XX.XXX 
+

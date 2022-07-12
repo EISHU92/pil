@@ -1,0 +1,8 @@
+#Put here the direct download of packs 
+
+
+# Minetest MIRROR chronoz.minetest.land (Default PIL mirror) "minetest"
+minetest:chronoz.minetest.land/minetest.tar
+
+# Downloader MIRROR chronoz.minetest.land (Default PIL mirror) "chrdown"
+chrdown:chronoz.minetest.land/chrdown.tar

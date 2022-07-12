@@ -1,0 +1,10 @@
+#!/bin/bash
+# Using Bash, Not PilExecutor lang.
+# Squeak VMs starter
+# By Sitetic 2
+
+if [ "$1" ]; then
+squeak-vm $1
+else
+echo "No file... No executing."
+fi

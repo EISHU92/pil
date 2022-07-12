@@ -1,0 +1,63 @@
+#!/bin/bash
+#Translation to Var-Keys
+qq="install, Install a application"
+ww="load, Start a program installed in the pil system"
+ee="remove, Remove a pil application"
+rr="restore, Restore the Pil data "
+tt="list, List programs"
+yy="Enter directory of the app to install"
+uu="Installing..."
+ii="Failed to execute <Install> file, ¿Invalid lines?"
+oo="Installing complete!"
+pp="Incorrect file directory, Try again later."
+aa="That directory are incorrect, try again."
+ss="Empty."
+dd="¿Sure to restore Pil system?"
+ff="type y for yes and n for no"
+gg="Enter your nick here"
+hh="Nick: "
+jj="No name enter, name generated: Pil_user"
+kk="Restored the Pil system."
+ll="Cancelled"
+zz="Enter name of the pil program"
+xx="found program."
+cc="Failed to start $pilprogramexe, The pilib are invalid. Error 1"
+vv="Unknow app Binary. ¿Invalid app?"
+f3="Testing if the file $vare is a real tar file..."
+#Entrance 1
+
+f6="
+Ummmmm Sir.
+We're hading some problems while starting pil,
+we dint found the functions that make pil more active on updates.
+Here are the errors:
+VAR hardlibs value is $hardlibs
+Warning: \033[1;99;33mHard libs directory not found. Ignoring\033[0m
+Time: $(date)
+"
+f1="If you want to see the commands list. Use pil help P06"
+
+
+
+
+
+
+
+
+#END: Entrance 1
+bb="No app enter, see command list."
+nn="This is the list of applications:"
+mm="No apps are installed... List of apps are empty"
+qw="Enter name of the pil program"
+qe="Found program."
+qr="Really do you want to remove $varw?"
+qt="Type Yes or y for accept and No or n for cancel"
+qy="Removing $varw"
+qu="Removed $varw"
+qi="Removing $varw"
+qo="Removed $varw"
+f4="exit: Exit from pil"
+translateonstop="Stopped running Pil Gui"
+#Translations by Donatto to Var-Keys
+hi="Hi"
+loadcfg="Loading Config"

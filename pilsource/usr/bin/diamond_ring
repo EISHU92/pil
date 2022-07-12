@@ -1,0 +1,20 @@
+#!/usr/bin/bash
+
+#
+# Diamond Ring from ringstone of Zii
+#
+
+# 
+# Use only for start programs on start
+#
+
+
+echo "Diamond Ring started in $(date), with opts: $*"
+
+if [ "$1" ]; then
+if [ -f "/usr/share/diamond-ring/list.drl_$1" ]; then
+. /usr/share/diamond-ring/list.drl_$1 #Executes list.drl_<Program file>
+else
+echo "Diamond Ring <$1> file not found, Ignoring..."
+fi 
+fi

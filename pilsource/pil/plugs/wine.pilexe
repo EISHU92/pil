@@ -1,0 +1,34 @@
+#!/bin/bash
+#!/pil/bin/pil_starter
+#Plugin Wine. Ver: 0.1
+
+#
+# By Donatto
+#
+
+#
+# Syntax: /pil/pil/plugs/wine.pilexe --start <<File directory>>
+#
+
+if [ -f /usr/bin/wine ]; then
+echo "found executable: /usr/bin/wine"
+echo "Ver: $(wine --version | tr " " ";" | cut -d ";" -f1)"
+wine=/usr/bin/wine
+else
+echo "Aborted, Wine Executable as not installed"
+exit 1
+fi
+
+if [ $1 ]; then
+case $1 in
+	--start)
+	if [ $2 ]; then
+	echo "Starting program $2"
+	$wine $2
+	fi
+	;;
+	--reboot)
+	echo "No module installed for reset wine:$wine root directory: $HOME/.wine"
+	;;
+fi
+

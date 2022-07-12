@@ -1,0 +1,80 @@
+#!/bin/bash
+pil.save_time_on_startup() { #pil.save_time_on_startup is Save the hours of day, for view your history, you only, this program is free, the program not send to others you info. 
+if [ "1" = $1 ]; then
+if [ -f /pil/time.data ]; then
+echo "Pil started in $(date)" >> /pil/time.data
+else
+touch /pil/time.data
+echo "##One user as cleared or the user are begginer, building times" >> /pil/time.data
+echo "Pil started in $(date)" >> /pil/time.data
+fi
+fi
+}
+
+pil.save_time_on_stop() {
+if [ "1" = $1 ]; then
+if [ -f /pil/time.data ]; then
+echo "Pil stopped in $(date)" >> /pil/time.data
+else
+touch /pil/time.data
+echo "##One user as cleared the log or the user are begginer, building times" >> /pil/time.data
+echo "Pil Stopped in $(date)" >> /pil/time.data
+fi
+fi
+}
+
+pil.send_to_desktop() { # Send to user a desktop message or in terminal
+if [ "$1" ]; then
+if [ -f /usr/bin/notify-send ]; then
+/usr/bin/notify-send "Pil message:" "$1"
+echo "Pil message: $1"
+else
+echo "Pil message: $1"
+fi
+fi
+}
+
+#
+# C Programming (Auto-compiling in install)
+#
+
+#
+# If you are use other machine using Gnu, compile files in /lib/pil_hard_libs/src 
+#
+
+pil.gen_name() { # Generate random names
+if [ -f /lib/pil_hard_libs/pil.name_generator ]; then
+/lib/pil_hard_libs/pil.name_generator
+else
+echo $RANDOM
+fi
+}
+
+pil.gen_number() { # Generate random number
+if [ -f /lib/pil_hard_libs/pil.number_gen ]; then
+/lib/pil_hard_libs/pil.number_gen
+else
+echo $RANDOM
+fi
+}
+
+pil.gen_tmp_fake_name() { # Generates a fake name for a tmp file
+if [ -f /lib/pil_hard_libs/pil.tmp_name_generator ]; then
+/lib/pil_hard_libs/pil.tmp_name_generator
+else
+echo $RANDOM
+fi
+}
+
+pil.gen_number_ranbash() { # Generate number/name from a Bash variable
+echo $RANDOM
+}
+
+
+
+# By Donatto
+# Pil libs 0.1
+#
+# Pil 0.1 Multi-Arch build
+#
+

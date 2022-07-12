@@ -1,0 +1,1089 @@
+#!/bin/bash
+echo "Welcome"
+#
+# CLASSIC PIL PROGRAM by Donatto // Clasico programa Pil por Donatto
+#
+
+#
+# PIL was maked by EISHU
+#
+
+#
+# Some functions and files was copied from Zii package manager
+#
+
+#
+# PIL desktop was actually installed. It are in BETA mode.
+#
+
+# Free software, can be shared to others, can be modified, can view the source
+# Version 0.6.1 (TronchaToro)
+# New: Translations, Solved errors from 0.2, New modules, Sub-programs starter added. // Nuevo: Translasiones, Errores resolvidos, nuevos modulos, Sub-Programa inicial
+# Added: Diamond Ring program (On start pil, functions of Diamond Ring have to be started) Program size: so small
+# Agregado: Diamond Ring (Si el programa pil enciende, las funciones agregadas "Por el usuario" seran ejecutadas) Tamaño del programa: muy pequeño
+# Added: Desktop apps laucher, PPil program
+# Solved: Bugs, Compatibility
+# New: Added Pil FileManager pil pack.
+# MultiOperatingSystem installation 
+
+#
+# You can visit chronoz.minetes.land There are the mirrors and the PIL download
+#
+
+# New installing modules on, now you can install envs and desktops Eg: ppil --ins-down lxde ( Download and install lxde from pil source )
+
+#
+# PPil program added to the PIL machine, you can interact with packs and download/install packs of the URLs fasted
+#
+
+#
+# All Packs with files *.desktop are linked in /usr/share/applications ### Only in VER 5 and latest
+#
+
+#
+# Upgraded: MegaTrend Loader, PIL lang, MIRRORS added
+#
+/lib/pil_hard_libs/functions.pilib
+/lib/pil_hard_libs/functions.pilib
+#
+# Failed to put this lines to file functions.pilib, the lines will be here for that reason.
+pil.save_time_on_startup() {
+if [ "1" = $1 ]; then
+if [ -f /pil/time.data ]; then
+echo "Pil started in $(date)" >> /pil/time.data
+else
+touch /pil/time.data
+chmod 777 /pil/time.data
+echo "##One user as cleared or the user are begginer, building times" >> /pil/time.data
+echo "Pil started in $(date)" >> /pil/time.data
+fi
+fi
+}
+
+#IGNORE "pil.make_var" Idea: Do vars to be written in files.
+pil.make_var() {
+if [ $1 ]; then
+if [ $2 ]; then
+mkdir -p /tmp/mc
+echo "$2" >> /tmp/mc/$1
+fi
+fi
+}
+
+
+
+
+
+
+
+
+pil.save_time_on_stop() {
+if [ "1" = $1 ]; then
+if [ -f /pil/time.data ]; then
+echo "Pil stopped in $(date)" >> /pil/time.data
+else
+touch /pil/time.data
+echo "##One user as cleared the log or the user are begginer, building times" >> /pil/time.data
+echo "Pil Stopped in $(date)" >> /pil/time.data
+fi
+fi
+}
+
+pil.send_to_desktop() { # Send to user a desktop message or in terminal
+if [ "$1" ]; then
+if [ -f /usr/bin/notify-send ]; then
+/usr/bin/notify-send "Pil message:" "$1"
+echo "Pil message: $1"
+else
+echo "Pil message: $1"
+fi
+fi
+}
+
+#
+# C Programming (Auto-compiling in install)
+#
+
+#
+# If you are use other machine using Gnu, compile files in /lib/pil_hard_libs/src 
+#
+
+pil.gen_name() { # Generate random names
+if [ -f /lib/pil_hard_libs/pil.name_generator ]; then
+/lib/pil_hard_libs/pil.name_generator
+else
+echo $RANDOM
+fi
+}
+
+pil.gen_number() { # Generate random number
+if [ -f /lib/pil_hard_libs/pil.number_gen ]; then
+/lib/pil_hard_libs/pil.number_gen
+else
+echo $RANDOM
+fi
+}
+
+pil.gen_tmp_fake_name() { # Generates a fake name for a tmp file
+if [ -f /lib/pil_hard_libs/pil.tmp_name_generator ]; then
+/lib/pil_hard_libs/pil.tmp_name_generator
+else
+echo $RANDOM
+fi
+}
+
+pil.gen_number_ranbash() { # Generate number/name from a Bash variable
+echo $RANDOM
+}
+
+
+
+# By EISHU
+# Pil libs 0.1
+#
+# Pil 0.1 Multi-Arch build
+#
+
+
+#
+
+diamond_ring pil # Diamond Ring, the Sub-Programs starter
+if [ -d /lib/pil_hard_libs ]; then
+hardlibs="yes"
+else
+hardlibs="no"
+fi
+
+if [ $hardlibs = "yes" ]; then
+/lib/pil_hard_libs/functions.pilib
+pil.save_time_on_startup 1
+else
+echo "pil.save_time_on_startup 1 =="
+echo -e $f6
+fi
+
+
+
+
+echo $f1
+
+
+if [ "$(cat /pil/translate.s)" = "1" ]; then # If in two selectors have two errors, the program will be closed with errors <<Aborted>>
+. /pil/translate/es.tr
+else
+etr=1
+fi
+if [ "$(cat /pil/translate.s)" = "2" ]; then
+. /pil/translate/en.tr
+else
+etrr=2
+fi
+
+
+
+if [ $etr ]; then
+if [ $etrr ]; then
+echo "Translations are incorrect!"
+echo "Aborting..."
+exit 1
+fi
+fi
+
+
+
+pil.echo_to_color() {
+if [ "$1" ]; then
+if [ "$2" ]; then
+case $1 in
+    1)
+    echo -e "\033[1;99;31m$2\033[0m" #Red
+    ;;
+    2)
+    echo -e "\033[1;99;32m$2\033[0m" #Green
+    ;;
+    3)
+    echo -e "\033[1;99;33m$2\033[0m" #Yellow (Used for warnings)
+    ;;
+    4)
+    echo -e "\033[1;99;34m$2\033[0m" # Blue
+    ;;
+    5)
+    echo -e "\033[1;99;36m$2\033[0m" #Cyan
+    ;;
+    6)
+    echo -e "\033[1;99;5;33m$2\033[0m" #Warning in appear to dissapear
+    ;;
+    7)
+    echo -e "\033[1;99;5;31m$2\033[0m" #Error in appear to dissapear
+    ;;
+esac
+fi
+fi
+}
+
+echo "$loadcfg"
+. /pil/pil.conf
+
+pil.send_to_desktop "$hi $username"
+
+if [ "$1" ]; then
+if [ "$2" ]; then
+case $1 in # A new line-entrance. On in 0.3
+    karoot_menu) # Modify used virtual machines (Secret option) This is a secret option for dont destroy the virtual machines
+    pil_load --from submodule_1 karoot-menu 
+    ;;
+    open_filemanager) # Open the pil file manager on directory /pil (Secret option)
+    /pil/data/filemanager/init.shell /pil
+    ;;
+    #microcontroller_menu) # Edit MicroController v0.1 This option will be able for version 0.7.0
+    #microcontroller_edit
+    #;;
+    install)
+    
+    
+    if [ "$(id -u)" = "0" ]; then # Tester.
+    
+    
+    export vare="$2"
+    if [ "$vare" ]; then # Solved some errors from variables.
+        if [ -f "$vare" ] || [ -f "$PWD/$vare" ]; then
+            echo $uu
+            cd /pil/apps
+            tmpnam=$(pil.gen_tmp_fake_name)
+            mkdir /tmp/$tmpnam
+            CDDIR=$PWD
+            cd /tmp/$tmpnam
+                        
+            echo "[    ] $f3"
+            if [ "$(file "$vare" | grep tar)" ] || [ $(file "$PWD/$vare" | grep tar) ]; then
+            echo "[ $(pil.echo_to_color 2 OK) ] $f3"
+            tar -xf $vare
+            else
+            echo "[$(pil.echo_to_color 1 FAIL)] $f3"
+            exit 1
+            fi
+            
+            cd $CDDIR
+            pwdlater=$PWD
+            cd /tmp/$tmpnam
+            appnam=$(cat /tmp/$tmpnam/pil.acfg | grep appname | cut -d = -f2)
+            
+            
+            if [ -d "/pil/apps/$appnam" ]; then # No deleting/Reinstalling apps if it was installed.
+            appnam=$(cat /tmp/$tmpnam/pil.acfg | grep appname | cut -d = -f2)
+            appnam=$(cat /tmp/$tmpnam/pil.acfg | grep appname | cut -d = -f2)
+            echo "Term_Out_Msg: Application $appnam are currently installed, not deleting/reinstalling them..."
+            randomizer=$appnam$RANDOM
+            echo "Term_Out_Msg: Application name registered to install: $randomizer"
+            cp -r /tmp/$tmpnam /pil/apps/$randomizer
+            
+            
+            # EISHU lines
+            
+            
+            CDLATERQ=$PWD
+            cd /pil/apps/$randomizer
+            chmod 777 *
+            cd $CDLATERQ
+            
+            
+            
+            
+            echo "1" >> /pil/apps/GEN_$appnam
+            if [ -f /pil/apps/$randomizer/depends.pilexe ]; then
+            /pil/plugs/pil.pilexe --start /pil/apps/$randomizer/depends.pilexe
+            fi
+            if [ -d "/pil/apps/$randomizer/pil.$appnam.desktopDIR" ]; then
+            if [ "$(ls /pil/apps/$randomizer/pil.$appnam.desktopDIR)" ]; then
+            echo "Term_Out_Msg: Desktop launcher file Found... Installing..."
+            echo "$(ls /pil/apps/$randomizer/pil.$appnam.desktopDIR)" >> /pil/apps/$randomizer/pil.$appnam.desktop.meta
+            cp -r /pil/apps/$randomizer/pil.$appnam.desktopDIR/* /usr/share/applications/
+            if [ -d /pil/apps/$randomizer/icon/ ]; then
+            echo "Term_Out_Msg: Copying some files for “Desktop launcher file”..."
+            	cp -r /pil/apps/$randomizer/icon* /pil/data/icons/*
+            else
+            	echo "Term_Out_Msg: No icons of “Desktop Launcher File” not found..."
+            	echo "Term_Out_Msg: Ignoring it..."
+            fi
+            fi
+            fi
+            if [ -f /pil/apps/$randomizer/install.shell ]; then
+            /pil/plugs/pil.pilexe --start /pil/apps/$randomizer/install.shell || pil.send_to_desktop "$ii"
+            fi
+            exit 0
+            fi
+            
+            
+            cp -r /tmp/$tmpnam /pil/apps/$appnam
+            
+            
+            
+            
+            CDLATERQ=$PWD
+            cd /pil/apps/$randomizer # Solved! "Unknow app binary."
+            chmod 777 *
+            cd $CDLATERQ
+            
+            
+            
+            
+            if [ -f /pil/apps/$appnam/depends.pilexe ]; then
+            . /pil/plugs/pil.pilexe --start /pil/apps/$appnam/depends.pilexe
+            fi
+            
+            if [ -d "/pil/apps/$appnam/pil.$appnam.desktopDIR" ]; then
+            if [ "$(ls /pil/apps/$appnam/pil.$appnam.desktopDIR)" ]; then
+            echo "Term_Out_Msg: Desktop laucher file Found... Installing..."
+            echo "$(ls /pil/apps/$appnam/pil.$appnam.desktopDIR)" >> /pil/apps/$appnam/pil.$appnam.desktop.meta
+            cp -r /pil/apps/$appnam/pil.$appnam.desktopDIR/* /usr/share/applications/
+            if [ -d /pil/apps/$appnam/icon/ ]; then
+            echo "Term_Out_Msg: Copying some files for “Desktop launcher file”..."
+            	cp -r /pil/apps/$appnam/icon* /pil/data/icons/*
+            else
+            	echo "Term_Out_Msg: No icons of “Desktop Launcher File” not found..."
+            	echo "Term_Out_Msg: Ignoring it..."
+            fi
+            fi
+            fi
+            
+            #cp -r /tmp/$tmpnam/pil.acfg /pil/apps/$appnam/pil.acfg # Not neccesary
+            if [ -f /pil/apps/$appnam/install.shell ]; then
+            . /pil/plugs/pil.pilexe --start /pil/apps/$appnam/install.shell || pil.send_to_desktop "$ii"
+            fi
+            cd $pwdlater
+            rm -r /tmp/$tmpnam
+            pil.send_to_desktop "$oo"
+            else
+            pil.send_to_desktop "$pp"
+            echo $aa
+        fi
+        else
+        echo $ss
+    fi
+    exit
+    
+    
+    else
+    echo "Unable to install pack $vare, you must be root to do this."
+    
+    
+    
+    fi # Id.
+    
+    
+    
+    ;;
+    restore)
+    
+    
+    
+    
+    
+    if [ "$(id -u)" = "0" ]; then
+    varr="$2"
+    case "$varr" in
+        y)
+        rm -r /pil/apps
+        cp -r /pil/restore/apps /pil/
+        echo $gg
+        echo -n $hh
+        read nick
+        if [ $nick ]; then
+            vart=$nick
+        else
+            echo $jj
+            vart=Pil_user
+        fi
+        cat << restoreroot > /pil/pil.conf
+#
+# Pil (Restored confing file) 
+#
+# Version: TronchaToro-0.6.1
+#
+# Restore started on $(date) [ 0.6.1 ] --RESTORED_TO_DEFAULT_CONF--
+#
+username=$vart
+restoreroot
+        pil.send_to_desktop "$kk"
+        ;;
+        n)
+        echo $ll
+    esac
+    exit
+    else
+    echo "PIL aborted. restore option needed root."
+    fi
+    
+    
+    
+    
+    ;;
+    load)
+     # Such "ALL" was removed from entry on this line ---Commits random errors--- Now errors are coding on: AA 1B BV F7
+     #List of errors
+     #
+     # 7A DE F3 78: Internal error found (On starting the loader started var "Test if its found = found" and its removed.)
+     # H4 Q2 37 1S: Package not found (Actual.)
+     # H1 J2 3F 2D: Well, The PiLib was falling by some unknow errors ( If you install PiLib incorrectly or corrupted. )
+     # 1A F4 O3 P1: The Main executable was not starting by UNKNOW errors ( Errors from PiLib or the main executable are corrupted )
+     # A2 H6 KA L1: Name dint enter.
+     #
+     # This errors, You only can solve its with: No entry unknow packs names, no removing first packs when PIL starts, Solve PiLib/Main executables
+     #
+    export varq="$2"
+    echo # New Line
+    if [ "$varq" ]; then
+    
+    
+    
+    
+    
+    
+    	if [ -f "/pil/apps/GEN_$varq" ]; then
+    		echo "Term_Out_Msg: File GEN_$varq found."
+    		echo "Term_Out_Msg: Please select a package to start."
+    		ls /pil/apps/ | grep $varq
+    		echo -n "::: "
+    		read spts
+    		
+    		
+        	if [ -d "/pil/apps/$spts" ]; then
+                	echo $xx
+                	pilexedepend=$(cat /pil/apps/$spts/pil.acfg | grep prstarter= | cut -d = -f2)
+                	pilprogramexe=$(cat /pil/apps/$spts/pil.acfg | grep prexe= | cut -d = -f2)
+                	if [ -f /pil/apps/$spts/root/bin/$pilprogramexe ]; then
+                    		###
+                    		export APP_PATH=$spts
+                    		if [ $(cat /pil/pil.conf | grep system= | cut -d = -f2) ]; then
+                    		export SYS=$(cat /pil/pil.conf | grep system= | cut -d = -f2)
+                    		else
+                    		echo "We dint find a system name on /pil/pil.acfg"
+                    		echo "You maybe experiment some errors on the application start"
+                    		fi
+                    		export PACKNAME=$spts
+                    		export ROOT="/pil/apps/$spts/root"
+                    		export PACK="/pil/apps/$spts"
+                     		/pil/plugs/$pilexedepend.pilexe --start /pil/apps/$spts/root/bin/$pilprogramexe "$3" || pil.send_to_desktop "$cc"
+                	else
+                		pil.send_to_desktop "$vv"
+                	fi
+                else
+                	echo "Error --H4 Q2 37 1S--"
+                	exit
+                fi
+                exit
+        else
+        echo "/pil/apps/GEN_$varq not found (Ignoring) [Read the manual after making the file.] {Auto searching package '/pil/apps/*'} "
+        fi
+        
+        
+        
+        
+        if [ -d "/pil/apps/$varq" ]; then
+        	spts=$varq
+                	if [ -d "/pil/apps/$spts" ]; then
+                	echo $xx
+                	pilexedepend=$(cat /pil/apps/$spts/pil.acfg | grep prstarter= | cut -d = -f2)
+                	pilprogramexe=$(cat /pil/apps/$spts/pil.acfg | grep prexe= | cut -d = -f2)
+                	if [ -f /pil/apps/$spts/root/bin/$pilprogramexe ]; then
+                    		###
+                    		export APP_PATH=$spts
+                    		if [ $(cat /pil/pil.conf | grep system= | cut -d = -f2) ]; then
+                    		export SYS=$(cat /pil/pil.conf | grep system= | cut -d = -f2)
+                    		else
+                    		echo "We dint find a system name on /pil/pil.acfg"
+                    		echo "You maybe experiment some errors on the application start"
+                    		fi
+                    		export PACKNAME=$spts
+                    		export ROOT="/pil/apps/$spts/root"
+                    		export PACK="/pil/apps/$spts"
+                     		. /pil/plugs/$pilexedepend.pilexe --start /pil/apps/$spts/root/bin/$pilprogramexe $3 || pil.send_to_desktop "$cc"
+                 else
+                 	pil.send_to_desktop "$vv"
+                 fi
+                else
+                 echo "Error --H4 Q2 37 1S--"
+                 exit
+                fi
+                exit
+        else
+        	echo "Error --7A DE F3 78--"
+        	echo "Package not found (Not ignored. Aborting)"
+        	exit
+        fi
+        
+        
+        
+        
+        
+        
+    else
+    	echo "Error --A2 H6 KA L1--"
+    	exit
+    fi
+    
+    
+    
+    
+    
+    
+    ;;
+    list)
+    if [ "$(ls /pil/apps)" ]; then
+    echo $nn
+    ls /pil/apps
+    else
+    echo $mm
+    fi
+    exit
+    ;;
+    remove)
+    export varw="$2"
+    if [ "$varw" ]; then
+        if [ -d /pil/apps/$varw ]; then
+            echo $qe
+            echo $qr
+            echo $qt
+            echo "For secure. The application that you will remove is $varw"
+            read vare
+            case $vare in
+                Yes)
+                    echo $qi
+                    if [ -f "/pil/apps/GEN_$varw" ]; then
+                    echo "Term_Out_Msg: File are found <<GEN_$varw>>"
+                    sleep 1
+                    echo "Term_Out_Msg: We found a lot of packs with this name <$varw>"
+                    echo "Term_Out_Msg: Can You select the package to remove? Press ^C to close"
+                    ls /pil/apps | grep $varw
+                    echo -n ":::  "
+                    read varwpack
+                    if [ "$varwpack" ]; then
+                         rm -r "/pil/apps/$varwpack"
+                    	pil.send_to_desktop "$qo"
+                    	if [ -f /pil/apps/$varwpack/pil.$varw.desktop.meta ]; then
+                    	CDDD=$PWD
+                    	cd /usr/share/applications
+                    	rm -r $(cat /pil/apps/$varwpack/pil.$varw.desktop.meta)
+                    	cd $CDDD
+                    	fi
+                    fi
+                    else
+                    if [ "$varw" ]; then
+                         rm -r "/pil/apps/$varw"
+                    	pil.send_to_desktop "$qo"
+                    	if [ -f /pil/apps/$varw/pil.$varw.desktop.meta ]; then
+                    	CDDDDDD=$PWD
+                    	cd /usr/share/applications
+                    	rm -r $(cat /pil/apps/$varw/pil.$varw.desktop.meta)
+                    	cd $CDDDDDD
+                    	fi
+                    fi
+                    fi
+                    ;;
+                y)
+                    echo $qi
+                    if [ -f "/pil/apps/GEN_$varw" ]; then
+                    echo "Term_Out_Msg: File are found <<GEN_$varw>>"
+                    sleep 1
+                    echo "Term_Out_Msg: We found a lot of packs with this name <$varw>"
+                    echo "Term_Out_Msg: Can You select the package to remove? Press ^C to close"
+                    ls /pil/apps | grep $varw
+                    echo -n ":::  "
+                    read varwpack
+                    if [ "$varwpack" ]; then
+                        rm -r "/pil/apps/$varwpack"
+                    	pil.send_to_desktop "$qo"
+                    	if [ -f /pil/apps/$varwpack/pil.$varw.desktop.meta ]; then
+                    	CDDD=$PWD
+                    	cd /usr/share/applications
+                    	rm -r $(cat /pil/apps/$varwpack/pil.$varw.desktop.meta)
+                    	cd $CDDD
+                    	fi
+                    fi
+                    else
+                    if [ "$varw" ]; then
+                         rm -r "/pil/apps/$varw"
+                    	pil.send_to_desktop "$qo"
+                    	if [ -f /pil/apps/$varw/pil.$varw.desktop.meta ]; then
+                    	CDDDDDD=$PWD
+                    	cd /usr/share/applications
+                    	rm -r $(cat /pil/apps/$varw/pil.$varw.desktop.meta)
+                    	cd $CDDDDDD
+                    	fi
+                    fi
+                    fi
+                    ;;
+                No)
+                    echo $ll
+                    ;;
+                n)
+                    echo $ll
+                    ;;
+            esac
+        fi
+    fi
+    exit
+    ;;
+    exit)
+    echo $translateonstop
+    exit $?
+    ;;
+    help)
+    cat << pill
+$qq
+$ww
+$ee
+$rr
+$tt
+pill
+    exit
+    ;;
+    *)
+    pil.echo_to_color 1 "Invalid option <<$1>> with data <<$2>>"
+    exit
+    ;;
+esac
+fi
+fi
+
+
+
+
+# --------------------- # For search this separator do: Ctrl+f and put ###LINE=SEPARATOR
+# Separator!
+
+# For text editor
+###LINE=SEPARATOR
+
+. /pil/pil.conf #Loading the default settings...
+
+pil.send_to_desktop "$hi $username"
+
+cat << pil
+$qq
+$ww
+$ee
+$rr
+$tt
+$f4
+pil
+while true
+do
+echo -n ">> "
+read piliput
+if [ "$piliput" ]; then
+case $piliput in
+    karoot_menu) # Modify used virtual machines (Secret option) This is a secret option for dont destroy the virtual machines
+    pil_load --from submodule_1 karoot-menu 
+    ;;
+    open_filemanager) # Open the pil file manager on directory /pil (Secret option)
+    /pil/data/filemanager/init.shell /pil
+    ;;
+    install)
+    echo $yy
+    read vare
+    
+    
+    if [ "$(id -u)" = "0" ]; then
+    
+    
+    if [ "$vare" ]; then # Solved some errors from variables.
+        if [ -f "$vare" ] || [ -f "$PWD/$vare" ]; then
+            echo $uu
+            cd /pil/apps
+            tmpnam=$(pil.gen_tmp_fake_name)
+            mkdir /tmp/$tmpnam
+            CDDIR=$PWD
+            cd /tmp/$tmpnam
+                        
+            echo "[    ] Testing if the file $vare is a real tar file..."
+            if [ "$(file "$vare" | grep tar)" ] || [ "$(file "$PWD/$vare" | grep tar)" ]; then
+            echo "[ $(pil.echo_to_color 2 OK) ] Testing if the file $vare is a real tar file..."
+            tar -xf $vare
+            else
+            echo "[$(pil.echo_to_color 1 FAIL)] Testing if the file $vare is a real tar file..."
+            exit
+            fi
+            
+            cd $CDDIR
+            pwdlater=$PWD
+            cd /tmp/$tmpnam
+            appnam=$(cat /tmp/$tmpnam/pil.acfg | grep appname | cut -d = -f2)
+            
+            
+            if [ -d "/pil/apps/$appnam" ]; then # No deleting/Reinstalling apps if it was installed.
+            appnam=$(cat /tmp/$tmpnam/pil.acfg | grep appname | cut -d = -f2)
+            appnam=$(cat /tmp/$tmpnam/pil.acfg | grep appname | cut -d = -f2)
+            echo "Term_Out_Msg: Application $appnam are currently installed, not deleting/reinstalling them..."
+            randomizer=$appnam$RANDOM
+            echo "Term_Out_Msg: Application name registered to install: $randomizer"
+            cp -r /tmp/$tmpnam /pil/apps/$randomizer
+            
+            
+            
+            
+            CDLATERQ=$PWD
+            cd /pil/apps/$randomizer
+            chmod 777 *
+            cd $CDLATERQ
+            
+            
+            
+            
+            echo "1" >> /pil/apps/GEN_$appnam
+            if [ -f /pil/apps/$randomizer/depends.pilexe ]; then
+            /pil/plugs/pil.pilexe --start /pil/apps/$randomizer/depends.pilexe
+            fi
+            if [ -d "/pil/apps/$appnam/pil.$appnam.desktopDIR" ]; then
+            if [ "$(ls /pil/apps/$randomizer/pil.$appnam.desktopDIR)" ]; then
+            echo "Term_Out_Msg: Desktop laucher file Found... Installing..."
+            echo "$(ls /pil/apps/$randomizer/pil.$appnam.desktopDIR)" >> /pil/apps/$randomizer/pil.$appnam.desktop.meta
+            cp -r /pil/apps/$randomizer/pil.$appnam.desktopDIR/* /usr/share/applications/
+            if [ -d /pil/apps/$randomizer/icon/ ]; then
+            echo "Term_Out_Msg: Copying some files for “Desktop launcher file”..."
+            	cp -r /pil/apps/$randomizer/icon* /pil/data/icons/*
+            else
+            	echo "Term_Out_Msg: No icons of “Desktop Launcher File” not found..."
+            	echo "Term_Out_Msg: Ignoring it..."
+            fi
+            fi
+            fi
+            if [ -f /pil/apps/$randomizer/install.shell ]; then
+            /pil/plugs/pil.pilexe --start /pil/apps/$randomizer/install.shell || pil.send_to_desktop "$ii"
+            fi
+            exit 0
+            fi
+            
+            
+            cp -r /tmp/$tmpnam /pil/apps/$appnam
+            
+            
+            
+            
+            CDLATERQ=$PWD
+            cd /pil/apps/$randomizer
+            chmod 777 *
+            cd $CDLATERQ
+            
+            
+            
+            
+            if [ -f /pil/apps/$appnam/depends.pilexe ]; then
+            . /pil/plugs/pil.pilexe --start /pil/apps/$appnam/depends.pilexe
+            fi
+            
+            if [ -d "/pil/apps/$appnam/pil.$appnam.desktopDIR" ]; then
+            if [ "$(ls /pil/apps/$appnam/pil.$appnam.desktopDIR)" ]; then
+            echo "Term_Out_Msg: Desktop laucher file Found... Installing..."
+            echo "$(ls /pil/apps/$appnam/pil.$appnam.desktopDIR)" >> /pil/apps/$appnam/pil.$appnam.desktop.meta
+            cp -r /pil/apps/$appnam/pil.$appnam.desktopDIR/* /usr/share/applications/
+            if [ -d /pil/apps/$appnam/icon/ ]; then
+            echo "Term_Out_Msg: Copying some files for “Desktop launcher file”..."
+            	cp -r /pil/apps/$appnam/icon* /pil/data/icons/*
+            else
+            	echo "Term_Out_Msg: No icons of “Desktop Launcher File” not found..."
+            	echo "Term_Out_Msg: Ignoring it..."
+            fi
+            fi
+            fi
+            
+            #cp -r /tmp/$tmpnam/pil.acfg /pil/apps/$appnam/pil.acfg
+            if [ -f /pil/apps/$appnam/install.shell ]; then
+            . /pil/plugs/pil.pilexe --start /pil/apps/$appnam/install.shell || pil.send_to_desktop "$ii"
+            fi
+            cd $pwdlater
+            rm -r /tmp/$tmpnam
+            pil.send_to_desktop "$oo"
+            else
+            pil.send_to_desktop "$pp"
+            echo $aa
+        fi
+        else
+        echo $ss
+    fi
+    
+    
+    
+    else
+    echo "Unable to install pack $vare, you must be root to install it."
+    
+    
+    
+    fi # Id.
+    
+    
+    
+    ;;
+    restore)
+    if [ "$(id -u)" = "0" ]; then
+    echo $dd
+    echo $ff
+    read varr
+    case "$varr" in
+        y)
+        rm -r /pil/apps
+        cp -r /pil/restore/apps /pil/
+        echo $gg
+        echo -n $hh
+        read nick
+        if [ $nick ]; then
+            vart=$nick
+        else
+            echo $jj
+            vart=Pil_user
+        fi
+        cat << restoreroot > /pil/pil.conf
+#
+# Pil (Restored confing file) 
+#
+# Version: TronchaToro-0.6.1
+#
+# Restored pil on $(date) [ 0.6.1 ] --RESTORED_TO_DEFAULT_CONF--
+#
+username=$vart
+restoreroot
+        pil.send_to_desktop "$kk"
+        ;;
+        n)
+        echo $ll
+    esac
+    exit
+    else
+    echo "PIL aborted. restore option needed root."
+    fi
+    ;;
+    load)
+    echo $zz
+    read varq
+    echo # New Line
+    if [ "$varq" ]; then
+    
+    
+    
+    
+    
+    
+    	if [ -f "/pil/apps/GEN_$varq" ]; then
+    		echo "Term_Out_Msg: File GEN_$varq found."
+    		echo "Term_Out_Msg: Please select a package to start."
+    		ls /pil/apps/ | grep $varq
+    		echo -n "::: "
+    		read spts
+    		
+    		
+        	if [ -d "/pil/apps/$spts" ]; then
+                	echo $xx
+                	pilexedepend=$(cat /pil/apps/$spts/pil.acfg | grep prstarter= | cut -d = -f2)
+                	pilprogramexe=$(cat /pil/apps/$spts/pil.acfg | grep prexe= | cut -d = -f2)
+                	if [ -f /pil/apps/$spts/root/bin/$pilprogramexe ]; then
+                    		###
+                    		export APP_PATH=$spts
+                    		if [ $(cat /pil/pil.conf | grep system= | cut -d = -f2) ]; then
+                    		export SYS=$(cat /pil/pil.conf | grep system= | cut -d = -f2)
+                    		else
+                    		echo "We dint find a system name on /pil/pil.acfg"
+                    		echo "You maybe experiment some errors on the application start"
+                    		fi
+                    		export PACKNAME=$spts
+                    		export ROOT="/pil/apps/$spts/root"
+                    		export PACK="/pil/apps/$spts"
+                     		. /pil/plugs/$pilexedepend.pilexe --start /pil/apps/$spts/root/bin/$pilprogramexe "$3" || pil.send_to_desktop "$cc"
+                	else
+                		pil.send_to_desktop "$vv"
+                	fi
+                else
+                	echo "Error --H4 Q2 37 1S--"
+                	exit
+                fi
+                exit
+        else
+        echo "/pil/apps/GEN_$varq not found (Ignoring) [Read the manual after making the file.] {Auto searching package '/pil/apps/*'} "
+        fi
+        
+        
+        
+        
+        if [ -d "/pil/apps/$varq" ]; then
+        	spts=$varq
+                	if [ -d "/pil/apps/$spts" ]; then
+                	echo $xx
+                	pilexedepend=$(cat /pil/apps/$spts/pil.acfg | grep prstarter= | cut -d = -f2)
+                	pilprogramexe=$(cat /pil/apps/$spts/pil.acfg | grep prexe= | cut -d = -f2)
+                	if [ -f /pil/apps/$spts/root/bin/$pilprogramexe ]; then
+                    		export PACKNAME=$spts
+                    		if [ $(cat /pil/pil.conf | grep system= | cut -d = -f2) ]; then
+                    		export SYS=$(cat /pil/pil.conf | grep system= | cut -d = -f2)
+                    		else
+                    		echo "We dint find a system name on /pil/pil.acfg"
+                    		echo "You maybe experiment some errors on the application start"
+                    		fi
+                    		export ROOT="/pil/apps/$spts/root" # FIXED: variable root, pack doenst exist
+                    		export PACK="/pil/apps/$spts"
+                     		. /pil/plugs/$pilexedepend.pilexe --start /pil/apps/$spts/root/bin/$pilprogramexe "$3" || pil.send_to_desktop "$cc"
+                 else
+                 	pil.send_to_desktop "$vv"
+                 fi
+                else
+                 echo "Error --H4 Q2 37 1S--"
+                 exit
+                fi
+                exit
+        else
+        	echo "Error --7A DE F3 78--"
+        	echo "Package not found (Not ignored. Aborting)"
+        	exit
+        fi
+        
+        
+        
+        
+        
+        
+    else
+    	echo "Error --A2 H6 KA L1--"
+    	exit
+    fi
+    
+    
+    
+    
+    
+    
+    ;;
+    list)
+    if [ "$(ls /pil/apps)" ]; then
+    echo $nn
+    ls /pil/apps
+    else
+    echo $mm
+    fi
+    ;;
+    remove)
+    echo $qw
+    read varus
+    export varw=$varus
+    if [ "$varw" ]; then
+        if [ -d /pil/apps/$varw ]; then
+            echo $qe
+            echo $qr
+            echo $qt
+            echo "For secure. The application that you will remove is $varw"
+            read vare
+            case $vare in
+                Yes)
+                    echo $qi
+                    if [ -f "/pil/apps/GEN_$varw" ]; then
+                    echo "Term_Out_Msg: File are found <<GEN_$varw>>"
+                    sleep 1
+                    echo "Term_Out_Msg: We found a lot of packs with this name <$varw>"
+                    echo "Term_Out_Msg: Can You select the package to remove? Press ^C to close"
+                    ls /pil/apps | grep $varw
+                    echo -n ":::  "
+                    read varwpack
+                    if [ "$varwpack" ]; then
+                         rm -r "/pil/apps/$varwpack"
+                    	pil.send_to_desktop "$qo"
+                    	if [ -f /pil/apps/$varwpack/pil.$varw.desktop.meta ]; then
+                    	CDDD=$PWD
+                    	cd /usr/share/applications
+                    	rm -r $(cat /pil/apps/$varwpack/pil.$varw.desktop.meta)
+                    	cd $PWD
+                    	fi
+                    fi
+                    else
+                    if [ "$varw" ]; then
+                         rm -r "/pil/apps/$varw"
+                    	pil.send_to_desktop "$qo"
+                    	if [ -f /pil/apps/$varw/pil.$varw.desktop.meta ]; then
+                    	CDDDDDD=$PWD
+                    	cd /usr/share/applications
+                    	rm -r $(cat /pil/apps/$varw/pil.$varw.desktop.meta)
+                    	cd $CDDDDDD
+                    	fi
+                    fi
+                    fi
+                    ;;
+                y)
+                    echo $qi
+                    if [ -f "/pil/apps/GEN_$varw" ]; then
+                    echo "Term_Out_Msg: File are found <<GEN_$varw>>"
+                    sleep 1
+                    echo "Term_Out_Msg: We found a lot of packs with this name <$varw>"
+                    echo "Term_Out_Msg: Can You select the package to remove? Press ^C to close"
+                    ls /pil/apps | grep $varw
+                    echo -n ":::  "
+                    read varwpack
+                    if [ "$varwpack" ]; then
+                        rm -r "/pil/apps/$varwpack"
+                    	pil.send_to_desktop "$qo"
+                    	if [ -f /pil/apps/$varwpack/pil.$varw.desktop.meta ]; then
+                    	CDDD=$PWD
+                    	cd /usr/share/applications
+                    	rm -r $(cat /pil/apps/$varwpack/pil.$varw.desktop.meta)
+                    	cd $PWD
+                    	fi
+                    fi
+                    else
+                    if [ "$varw" ]; then
+                         rm -r "/pil/apps/$varw"
+                    	pil.send_to_desktop "$qo"
+                    	if [ -f /pil/apps/$varw/pil.$varw.desktop.meta ]; then
+                    	CDDDDDD=$PWD
+                    	cd /usr/share/applications
+                    	rm -r $(cat /pil/apps/$varw/pil.$varw.desktop.meta)
+                    	cd $CDDDDDD
+                    	fi
+                    fi
+                    fi
+                    ;;
+                No)
+                    echo $ll
+                    ;;
+                n)
+                    echo $ll
+                    ;;
+            esac
+        fi
+    fi
+    ;;
+    exit)
+    echo $translateonstop
+    exit $?
+    ;;
+    *)
+    if [ "$piliput" ]; then
+    pil.echo_to_color 1 "Invalid option <<$piliput>>"
+    else
+    echo
+    fi
+    ;;
+    
+    
+esac
+fi
+done
+
+pil.save_time_on_stop 1
+
+echo "$translateonstop with $*"
+
+# From Chronoz Incorporation
+
+
+
+# Solved some errors/bugs
+#  ____________     _____
+# |            |   |     |
+# |   _________|   |     |
+# |  |		  |	|
+# |  |		  |	|
+# |  |		  |	|__________   ________   ____________    ____________   ___________     _________
+# |  |		  |	          |  |        |  |   ______   |  |   ______   |  |   _____   |  |______   |
+# |  |		  |	_____     |  |    ____|  |  |	 |  |  |  |	|  |  |  |     |  |        /  /
+# |  |		  |	|    |    |  |   |       |  |	 |  |  |  |	|  |  |  |     |  |      /  /
+# |  |_________    |	|    |    |  |   |       |  |	 |  |  |  |	|  |  |  |     |  |    /  /
+# |            |   |	|    |    |  |   |       |  |______|  |  |  |	|  |  |  |_____|  |  /  /______
+# |____________|   |______|    |____|  |___|       |____________|  |__|	|__|  |___________| |__________|
+
+# Installing is easy now, you can install 2 packs with the same name
+# Mirrors enabled. 

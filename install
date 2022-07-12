@@ -1,0 +1,49 @@
+#!/bin/bash
+
+#
+# Pil software Installer
+#
+
+if [ "$(id -u)" = "0" ]; then
+
+if [ "$1" ]; then
+
+install_() {
+mkdir -p /tmp/pil
+tar -xf data.tar -C /tmp/pil
+cp /tmp/pil/usr/bin/pil /usr/bin/pil
+cp /tmp/pil/usr/bin/ppil /usr/bin/ppil
+cp /tmp/pil/usr/bin/diamond_ring /usr/bin/diamond_ring
+cp -r /tmp/pil/usr/share/diamond-ring /usr/share/diamond-ring
+cp -r /tmp/pil/pil /pil
+cp -r /tmp/pil/lib/pil_hard_libs /lib/pil_hard_libs
+rm -r /tmp/pil
+. install__
+echo "Pil are installed"
+}
+
+remove() {
+rm -r $(cat remove.list)
+echo "Removed pil"
+}
+
+case $1 in 
+	install)
+	install_
+	;;
+	remove)
+	remove
+	;;
+esac
+
+else
+
+echo "Invalid usage."
+
+fi
+
+else
+
+echo "Privs are required for the installation."
+
+fi

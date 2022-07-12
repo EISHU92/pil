@@ -1,0 +1,13 @@
+#
+# Example app
+#
+
+
+#
+# Text viewer 0.1 of Pil Libs
+#
+
+
+prstarter=pil
+prexe=viewer
+appname=Text_Viewer

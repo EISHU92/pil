@@ -1,0 +1,168 @@
+#!/bin/bash
+PATH=$PATH:/pil/data/filemanager/lib
+list
+while true; do
+read -N1 -s varaa
+case $varaa
+	h)
+	echo "
+	Button h: Help menu
+	Button c: Create an folder or file
+	Button r: Rename an folder or file
+	Button o: Change Owner of a file or folder (Root Only)
+	Button l: List content of the folder
+	Button d: Read file (Raw text or normal text.)
+	Button m: Change permissions of a file or folder (With number like “777”)
+	Button a: Execute a command in the folder
+	Button e: Edit an file, Raw or text.
+	Button v: Remove a file.
+	Button g: Go to <folder>
+	Button i: Info of a file
+	"
+	sleep 2
+	clear
+	;;
+	c)
+	echo "Please put a name for file or folder"
+	read farive
+	if [ $farive ]; then
+	echo "Folder(1) or File(2)"
+	read -N1 -s farive2
+	if [ $farive2 ]; then
+	create $farive $farive2 # create <file or folder name> <Type of file, folder(1) or file(2)>
+	else
+	echo "Creating File..."
+	touch $farive
+	echo "Why you dint put a number?" >> $farive
+	fi
+	else
+	echo "Directly going to do nothing..."
+	fi
+	clear
+	;;
+	r)
+	echo "Please put the name of the file or the folder to change the name."
+	read fofntc # File.Or.Folder.Name.To.Change
+	if [ -d "$fofntc" ] || [ -d "$PWD/$fofntc" ] || [ -f "$fofntc" ] || [ -f "$PWD/$fofntc" ]; then
+	echo "Put a new name for the file or folder."
+	read $fofntc1
+	if [ $fofntc1 ]; then
+	mv -r $fofntc $fofntc1
+	else
+	echo "Directly going to do nothing..."
+	fi
+	else
+	echo "No file or directory not found."
+	sleep 1
+	fi
+	clear
+	;;
+	o)
+	if [ $(id -u) = "0" ]; then
+	echo "Please put the name of the file or folder to change the owner..."
+	read foftco # File.or.Folder.to.change.owner
+	if [ -d "$foftco" ] || [ -d "$PWD/$foftco" ] || [ -f "$foftco" ] || [ -f "$PWD/$foftco" ]; then
+	echo "Put the user to be the owner of the file or folder..."
+	read userforowner
+	if [ $userforowner ]; then
+	chowner $userforowner $foftco
+	else
+	echo "No user was put... Aborting"
+	sleep 1
+	fi
+	else
+	echo "No file or directory not found"
+	sleep 1
+	fi
+	else
+	echo "You must be root to change the owner of the folder or file..."
+	sleep 1
+	fi
+	clear
+	;;
+	l)
+	list
+	sleep 1
+	;;
+	d)
+	echo "Put the name of the file to read"
+	read filetoscan
+	if [ "$filetoscan" ]; then
+	if [ -f "$filetoscan" ] || [ -f "$PWD/$filetoscan" ]; then
+	read2 $filetoscan
+	else
+	echo "No file found or the file putted in is a folder"
+	fi
+	else
+	echo "No name of file found."
+	fi
+	sleep 1
+	clear
+	;;
+	m)
+	echo "Put the file to change the permissions"
+	if [ "$PWD" = "/pil" ]; then
+	echo "info: if the error on pil starts say “/pil/time.data: Permission Denied” you can repair it with this tool"
+	echo "info: by putting this file name: time.data and put the permissions “777”."
+	fi
+	read $filetochangeperms
+	if [ -f "$filetochangeperms" ] || [ -f "$PWD/$filetochangeperms" ] || [ -d "$filetochangeperms" ] || [ -d "$PWD/$filetochangeperms" ]; then
+	echo "Put the code of permissions"
+	echo "like 777 "
+	read codeir
+	if [ "$codeir" ]; then
+	chperms $filetochangeperms $codeir
+	else
+	echo "The code is invalid or you dint put the code."
+	fi
+	else
+	echo "File or directory not found"
+	fi
+	sleep 1
+	clear
+	;;
+	a)
+	echo "Put a command (Can be with args too)"
+	read comandohoho
+	if [ "$comandohoho" ]; then
+	command2 $comandohoho
+	else
+	echo "dint put a command"
+	echo "Executing: echo “Hi there :) you are on $PWD”"
+	command2 "echo" "Hi there :) you are on $PWD"
+	fi
+	sleep 1
+	clear
+	;;
+	e)
+	echo "Put a file name to edit"
+	read filetoedit
+	if [ -f "$filetoedit" ] || [ -f "$PWD/filetoedit" ]; then
+	nano $
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+esac
+done
+
+
+
+
+
+
+
+
+
+
+
+
+
+

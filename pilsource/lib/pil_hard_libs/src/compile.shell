@@ -1,0 +1,10 @@
+#!/bin/bash
+cd /lib/pil_hard_libs/src
+echo Compiling...
+gcc -x c name_gen.c -o ../pil.name_generator
+echo "compiled name generator"
+gcc -x c number.c -o ../pil.number_gen
+echo "compiled number generator"
+gcc -x c tmp_name_gen.c -o ../pil.tmp_name_generator
+echo "compiled tmp fake name generator"
+sleep 1

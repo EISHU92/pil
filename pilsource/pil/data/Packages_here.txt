@@ -1,0 +1,2 @@
+You can drop here the Pil packages
+Do not drop unknow Pil packages
