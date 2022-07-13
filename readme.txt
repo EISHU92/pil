@@ -15,3 +15,7 @@ Do not modify/remove the file install__ and remove.list
 
 # Warnings of PIL
 Downloading Raw files of PIL can cause a system-broke, the file you download raw from github name must be pil-master.zip and wanst the real installation, we recommend you to download pil from releases and install it
+
+# How to update urls.db of pil
+By downloading P.S.L of EISHU92
+and executing the file psl.sh
