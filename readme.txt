@@ -21,5 +21,5 @@ By downloading P.S.L of EISHU92
 and executing the file psl.sh
 
 # Contact Us
-You can report, ask, etc to me in a:
-Discord server:https://discord.gg/Saw4BHnQ
+You can any bugs report, ask, etc to me in a:
+Discord server:https://discord.gg/eexNY3EGmG
