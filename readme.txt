@@ -19,3 +19,7 @@ Downloading Raw files of PIL can cause a system-broke, the file you download raw
 # How to update urls.db of pil
 By downloading P.S.L of EISHU92
 and executing the file psl.sh
+
+# Contact Us
+You can report, ask, etc to me in a:
+Discord server:https://discord.gg/Saw4BHnQ
