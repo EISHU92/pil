@@ -271,7 +271,7 @@ case $1 in # A new line-entrance. On in 0.3
             
             if [ -d "/pil/apps/$appnam" ]; then # No deleting/Reinstalling apps if it was installed.
             appnam=$(cat /tmp/$tmpnam/pil.acfg | grep appname | cut -d = -f2)
-            appnam=$(cat /tmp/$tmpnam/pil.acfg | grep appname | cut -d = -f2)
+            appnam=$(cat /tmp/$tmpnam/pil.acfg | grep appname | cut -d = -f2) # DUD
             echo "Term_Out_Msg: Application $appnam are currently installed, not deleting/reinstalling them..."
             randomizer=$appnam$RANDOM
             echo "Term_Out_Msg: Application name registered to install: $randomizer"
@@ -286,7 +286,18 @@ case $1 in # A new line-entrance. On in 0.3
             chmod 777 *
             cd $CDLATERQ
             
+            if [ "$PIL_AUTO_EXECUTE" ]; then # New function. for 0.6.2
+            echo "installing $randomizer.$appnam to bin, for direct execute..."
+            if [ -f "/pil/bin/$appnam" ]; then
+            echo "AutoExecute of $appnam already exist..."
+            echo "Ignoring..."
+            else
+            echo "pil start $appnam" >> /pil/bin/$appnam
+            fi
+            echo "Finished install... proceding to execute scripts"
+            echo "For execute the directly function, on your normal user execute pil_load --from sub_module0 autoexecute"
             
+            fi
             
             
             echo "1" >> /pil/apps/GEN_$appnam
@@ -313,6 +324,7 @@ case $1 in # A new line-entrance. On in 0.3
             exit 0
             fi
             
+
             
             cp -r /tmp/$tmpnam /pil/apps/$appnam
             
@@ -727,7 +739,18 @@ case $piliput in
             chmod 777 *
             cd $CDLATERQ
             
+            if [ "$PIL_AUTO_EXECUTE" ]; then # New function. for 0.6.2
+            echo "installing $randomizer.$appnam to bin, for direct execute..."
+            if [ -f "/pil/bin/$appnam" ]; then
+            echo "AutoExecute of $appnam already exist..."
+            echo "Ignoring..."
+            else
+            echo "pil start $appnam" >> /pil/bin/$appnam
+            fi
+            echo "Finished install... proceding to execute scripts"
+            echo "For execute the directly function, on your normal user execute pil_load --from sub_module0 autoexecute"
             
+            fi
             
             
             echo "1" >> /pil/apps/GEN_$appnam
@@ -761,11 +784,22 @@ case $piliput in
             
             
             CDLATERQ=$PWD
-            cd /pil/apps/$randomizer
+            cd /pil/apps/$appnam
             chmod 777 *
             cd $CDLATERQ
             
+            if [ "$PIL_AUTO_EXECUTE" ]; then # New function. for 0.6.2
+            echo "installing $appnam$RANDOM.$appnam to bin, for direct execute..."
+            if [ -f "/pil/bin/$appnam" ]; then
+            echo "AutoExecute of $appnam already exist..."
+            echo "Ignoring..."
+            else
+            echo "pil start $appnam" >> /pil/bin/$appnam
+            fi
+            echo "Finished install... proceding to execute scripts"
+            echo "For execute the directly function, on your normal user execute pil_load --from sub_module0 autoexecute"
             
+            fi
             
             
             if [ -f /pil/apps/$appnam/depends.pilexe ]; then
