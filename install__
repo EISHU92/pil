@@ -44,7 +44,7 @@ case $system in
   d)
   echo "Remember to:"
   sleep 1
-  echo "Put your system name on /pil/pil.conf line: system=(Void.EasyOs.Etc)
+  echo "Put your system name on /pil/pil.conf line: system=(Void.EasyOs.Etc)"
   ;;
   e)
   SYSTEMNAME="ubuntumate"
